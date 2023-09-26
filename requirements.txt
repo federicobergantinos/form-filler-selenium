@@ -1,0 +1,2 @@
+selenium==selenium-4.13.0
+loguru==0.7.2
