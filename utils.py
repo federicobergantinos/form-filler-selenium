@@ -31,3 +31,8 @@ class WebDriver:
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located((By.XPATH, field))).click()
         wait = WebDriverWait(self.browser, 10)
+
+    def send_form(self):
+        self.change_page(
+            field='//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div[2]',
+        )

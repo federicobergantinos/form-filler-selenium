@@ -14,54 +14,29 @@ genero = {
     "Prefiero no decirlo": {"id": '//*[@id="i30"]', "probability": 0.1},
 }
 
-# #  Sos o fuiste en algún momento estudiante de una carrera universitaria relacionada con Tecnologías de la Información (IT)?
-# tipo = {
-#     "Sí, soy estudiante en la actualidad": {
-#         "id": '//*[@id="i37"]',
-#         "probability": 0.18,
-#     },
-#     "Si, soy estudiante pero abandoné una carrera IT en la antigüedad.": {
-#         "id": '//*[@id="i40"]',
-#         "probability": 0.28,
-#     },
-#     "Sí, soy egresado de una carrera relacionada con IT.": {
-#         "id": '//*[@id="i43"]',
-#         "probability": 0.12,
-#     },
-#     "Sí, fuí estudiante pero abandoné la carrera.": {
-#         "id": '//*[@id="i46"]',
-#         "probability": 0.35,
-#     },
-#     "No, nunca estudié una carrera relacionada con IT.": {
-#         "id": '//*[@id="i49"]',
-#         "probability": 0.07,
-#     },
-# }
-
-# TODO
+#  Sos o fuiste en algún momento estudiante de una carrera universitaria relacionada con Tecnologías de la Información (IT)?
 tipo = {
     "Sí, soy estudiante en la actualidad": {
         "id": '//*[@id="i37"]',
-        "probability": 1,
+        "probability": 0.18,
     },
     "Si, soy estudiante pero abandoné una carrera IT en la antigüedad.": {
         "id": '//*[@id="i40"]',
-        "probability": 0.0,
+        "probability": 0.28,
     },
     "Sí, soy egresado de una carrera relacionada con IT.": {
         "id": '//*[@id="i43"]',
-        "probability": 0.0,
+        "probability": 0.12,
     },
     "Sí, fuí estudiante pero abandoné la carrera.": {
         "id": '//*[@id="i46"]',
-        "probability": 0.0,
+        "probability": 0.35,
     },
     "No, nunca estudié una carrera relacionada con IT.": {
         "id": '//*[@id="i49"]',
-        "probability": 0.0,
+        "probability": 0.07,
     },
 }
-
 
 #  ¿Recibiste algún tipo de orientación vocacional antes de elegir tu carrera?
 orientacion_vocacional = {
@@ -204,6 +179,31 @@ abandono_retomar = {
     "si": {"id": '//*[@id="i104"]', "probability": 0.25},
     "no": {"id": '//*[@id="i107"]', "probability": 0.32},
     "tal vez": {"id": '//*[@id="i110"]', "probability": 0.43},
+}
+
+
+#  ¿Creés que los conocimientos adquiridos en tu carrera de IT han sido relevantes en tu trayectoria profesional actual?
+egresado_conomientos = {
+    "Mayoritariamente sí": {"id": '//*[@id="i5"]', "probability": 0.67},
+    "Mayoritariamente no": {"id": '//*[@id="i8"]', "probability": 0.30},
+    "No sabe / No contesta": {"id": '//*[@id="i11"]', "probability": 0.03},
+}
+
+#  ¿Considerás que la calidad de la educación recibida en tu carrera de IT fue un factor determinante para tu éxito profesional posterior?
+egresado_calidad = {
+    "si": {"id": '//*[@id="i18"]', "probability": 0.68},
+    "no": {"id": '//*[@id="i21"]', "probability": 0.18},
+    "No sabe / No contesta": {"id": '//*[@id="i24"]', "probability": 0.14},
+}
+
+#  ¿Tuviste que complementar tus estudios universitarios con aprendizaje adicional (autodidacta, cursos en línea, etc.) para mantenerte al día en el campo de IT?
+egresado_estudiar = {
+    "Sí, frecuentemente": {"id": '//*[@id="i31"]', "probability": 0.24},
+    "Sí, ocasionalmente": {"id": '//*[@id="i34"]', "probability": 0.36},
+    "No, los conocimientos de la carrera siguen siendo suficientes": {
+        "id": '//*[@id="i37"]',
+        "probability": 0.40,
+    },
 }
 
 
