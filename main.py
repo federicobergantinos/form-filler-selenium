@@ -33,7 +33,7 @@ def main():
     )
 
     # Siguiente
-    driver.click_field(
+    driver.change_page(
         field='//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div',
     )
 
@@ -41,20 +41,57 @@ def main():
     if tipo == '//*[@id="i37"]':
         logger.info("Estudiante")
         driver.click_field(
-            field=get_proba_by_field(
-                field=fields.estudiante_abandonar_carrera
-            ),
-        )
-        driver.click_field(
             field=get_proba_by_field(field=fields.estudiante_futuro_laboral),
         )
         driver.click_field(
             field=get_proba_by_field(field=fields.estudiante_satisfecho),
         )
-        # Siguiente
+        penso_en_abandonar = get_proba_by_field(
+            field=fields.estudiante_abandonar_carrera
+        )
         driver.click_field(
+            field=penso_en_abandonar,
+        )
+
+        # Siguiente
+        driver.change_page(
             field='//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div[2]',
         )
+        if penso_en_abandonar == '//*[@id="i24"]':
+            logger.info("Estudiante SI penso Abandono")
+            driver.click_field(
+                field=get_proba_by_field(field=fields.penso_conexion),
+            )
+            driver.click_field(
+                field=get_proba_by_field(field=fields.penso_expectativas),
+            )
+            driver.click_field(
+                field=get_proba_by_field(field=fields.penso_factores),
+            )
+            driver.click_field(
+                field=get_proba_by_field(field=fields.penso_recursos),
+            )
+            driver.click_field(
+                field=get_proba_by_field(field=fields.penso_recursos_dispo),
+            )
+
+            # Enviar
+            driver.change_page(
+                field=(
+                    '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div[2]'
+                ),
+            )
+
+        else:
+            logger.info("Estudiante NO penso Abandono")
+
+            # Enviar
+            driver.change_page(
+                field=(
+                    '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div[2]'
+                ),
+            )
+
     elif tipo == '//*[@id="i40"]':
         logger.info("Estudiante-Abandono")
     elif tipo == '//*[@id="i43"]':
