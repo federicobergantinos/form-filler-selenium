@@ -59,7 +59,7 @@ def main():
             if recursos_dispo == '//*[@id="i38"]':
                 driver.text_field(
                     field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[1]/div[4]/div/div/div/div/div[1]/input',
-                    text="",
+                    text=" ",
                 )
 
             factores = get_proba(field=fields.penso_factores)
@@ -90,7 +90,6 @@ def main():
 
         driver.click_field(field=get_proba(field=fields.abandono_conexion))
         driver.click_field(field=get_proba(field=fields.abandono_expectativas))
-        driver.click_field(field=get_proba(field=fields.abandono_factores))
         driver.click_field(field=get_proba(field=fields.abandono_materias))
         driver.click_field(field=get_proba(field=fields.abandono_recibiste_orien))
         driver.click_field(field=get_proba(field=fields.abandono_recursos))
@@ -105,8 +104,7 @@ def main():
                 field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[1]/div[6]/div/div/div/div/div[1]/input',
                 text=random_choice_from_list(fields.factores_otros_motivos),
             )
-
-        
+ 
         recursos_dispo = get_proba(field=fields.abandono_recursos_dispo)
         driver.click_field(field=recursos_dispo)
 
@@ -114,10 +112,10 @@ def main():
         if recursos_dispo == '//*[@id="i57"]':
             driver.text_field(
                 field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div[1]/div[4]/div/div/div/div/div[1]/input',
-                text="",
+                text=" ",
             )
-
-
+            
+            
         # Enviar
         driver.send_form()
     elif tipo == '//*[@id="i43"]':
