@@ -1,10 +1,9 @@
-import time
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
 from loguru import logger
 
-from utils import get_proba_by_field, WebDriver
-import encuesta_fields
+from utils import get_proba, WebDriver, random_choice_from_list
+import encuesta_fields as fields
 
 
 def main():
@@ -20,17 +19,13 @@ def main():
     driver = WebDriver(browser)
 
     # Opciones General
-    tipo = get_proba_by_field(field=encuesta_fields.tipo)
+    tipo = get_proba(field=fields.tipo)
 
-    driver.click_field(field=get_proba_by_field(field=encuesta_fields.edad))
-    driver.click_field(field=get_proba_by_field(field=encuesta_fields.genero))
+    driver.click_field(field=get_proba(field=fields.edad))
+    driver.click_field(field=get_proba(field=fields.genero))
     driver.click_field(field=tipo)
-    driver.click_field(
-        field=get_proba_by_field(field=encuesta_fields.orientacion_vocacional),
-    )
-    driver.click_field(
-        field=get_proba_by_field(field=encuesta_fields.trabajaste_profesion),
-    )
+    driver.click_field(field=get_proba(field=fields.orientacion_vocacional))
+    driver.click_field(field=get_proba(field=fields.trabajaste_profesion))
 
     # Siguiente
     driver.change_page(
@@ -40,22 +35,11 @@ def main():
     # Opciones Estudiante
     if tipo == '//*[@id="i37"]':
         logger.info("Estudiante")
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.estudiante_futuro_laboral
-            ),
-        )
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.estudiante_satisfecho
-            ),
-        )
-        penso_en_abandonar = get_proba_by_field(
-            field=encuesta_fields.estudiante_abandonar_carrera
-        )
-        driver.click_field(
-            field=penso_en_abandonar,
-        )
+        driver.click_field(field=get_proba(field=fields.estudiante_futuro_laboral))
+        driver.click_field(field=get_proba(field=fields.estudiante_satisfecho))
+
+        penso_en_abandonar = get_proba(field=fields.estudiante_abandonar_carrera)
+        driver.click_field(field=penso_en_abandonar)
 
         # Siguiente
         driver.change_page(
@@ -63,25 +47,30 @@ def main():
         )
         if penso_en_abandonar == '//*[@id="i24"]':
             logger.info("Estudiante SI penso Abandono")
-            driver.click_field(
-                field=get_proba_by_field(field=encuesta_fields.penso_conexion),
-            )
-            driver.click_field(
-                field=get_proba_by_field(
-                    field=encuesta_fields.penso_expectativas
-                ),
-            )
-            driver.click_field(
-                field=get_proba_by_field(field=encuesta_fields.penso_factores),
-            )
-            driver.click_field(
-                field=get_proba_by_field(field=encuesta_fields.penso_recursos),
-            )
-            driver.click_field(
-                field=get_proba_by_field(
-                    field=encuesta_fields.penso_recursos_dispo
-                ),
-            )
+            driver.click_field(field=get_proba(field=fields.penso_conexion))
+            driver.click_field(field=get_proba(field=fields.penso_expectativas))
+            driver.click_field(field=get_proba(field=fields.penso_factores))
+            driver.click_field(field=get_proba(field=fields.penso_recursos))
+
+            recursos_dispo = get_proba(field=fields.penso_recursos_dispo)
+            driver.click_field(field=recursos_dispo)
+
+            # si es otros, se pone vacio
+            if recursos_dispo == '//*[@id="i38"]':
+                driver.text_field(
+                    field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[1]/div[4]/div/div/div/div/div[1]/input',
+                    text="",
+                )
+
+            factores = get_proba(field=fields.penso_factores)
+            driver.click_field(field=factores)
+
+            # si es otros, random entre otros motivos factores
+            if factores == '//*[@id="i21"]':
+                driver.text_field(
+                    field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div[1]/div[6]/div/div/div/div/div[1]/input',
+                    text=random_choice_from_list(fields.factores_otros_motivos),
+                )
 
             # Enviar
             driver.send_form()
@@ -92,59 +81,51 @@ def main():
             # Enviar
             driver.send_form()
 
+    # Estudiantes que abandonaron y empezaron otra carrera y estudaintes que abandonaron
     elif tipo == '//*[@id="i46"]' or tipo == '//*[@id="i40"]':
         if tipo == '//*[@id="i40"]':
             logger.info("Estudiante-Abandono")
         else:
             logger.info("Abandono")
 
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.abandono_conexion),
-        )
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.abandono_expectativas
-            ),
-        )
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.abandono_factores),
-        )
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.abandono_materias),
-        )
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.abandono_recibiste_orien
-            ),
-        )
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.abandono_recursos),
-        )
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.abandono_recursos_dispo
-            ),
-        )
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.abandono_retomar),
-        )
+        driver.click_field(field=get_proba(field=fields.abandono_conexion))
+        driver.click_field(field=get_proba(field=fields.abandono_expectativas))
+        driver.click_field(field=get_proba(field=fields.abandono_factores))
+        driver.click_field(field=get_proba(field=fields.abandono_materias))
+        driver.click_field(field=get_proba(field=fields.abandono_recibiste_orien))
+        driver.click_field(field=get_proba(field=fields.abandono_recursos))
+        driver.click_field(field=get_proba(field=fields.abandono_retomar))
+
+        factores = get_proba(field=fields.abandono_factores)
+        driver.click_field(field=factores)
+
+        # si es otros, se pone vacio
+        if factores == '//*[@id="i40"]':
+            driver.text_field(
+                field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[1]/div[6]/div/div/div/div/div[1]/input',
+                text=random_choice_from_list(fields.factores_otros_motivos),
+            )
+
+        
+        recursos_dispo = get_proba(field=fields.abandono_recursos_dispo)
+        driver.click_field(field=recursos_dispo)
+
+        # si es otros, se pone vacio
+        if recursos_dispo == '//*[@id="i57"]':
+            driver.text_field(
+                field='//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div[1]/div[4]/div/div/div/div/div[1]/input',
+                text="",
+            )
+
 
         # Enviar
         driver.send_form()
     elif tipo == '//*[@id="i43"]':
         logger.info("Egresado")
 
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.egresado_calidad),
-        )
-        driver.click_field(
-            field=get_proba_by_field(
-                field=encuesta_fields.egresado_conomientos
-            ),
-        )
-        driver.click_field(
-            field=get_proba_by_field(field=encuesta_fields.egresado_estudiar),
-        )
+        driver.click_field(field=get_proba(field=fields.egresado_calidad))
+        driver.click_field(field=get_proba(field=fields.egresado_conomientos))
+        driver.click_field(field=get_proba(field=fields.egresado_estudiar))
 
         # Enviar
         driver.send_form()
@@ -158,23 +139,6 @@ def main():
         logger.info("Error")
         raise "error"
 
-    time.sleep(10)
-    # Use the following snippets to get elements by their class names
-    # textboxes = browser.find_elements_by_class_name("quantumWizTextinputPaperinputInput")
-    # checkboxes = browser.find_elements_by_class_name("quantumWizTogglePapercheckboxInnerBox")
-    # submitbutton = browser.find_element_by_class_name("appsMaterialWizButtonPaperbuttonContent")
-
-    # # Use the following snippets to get elements by their XPath
-    # otherboxes = browser.find_element_by_xpath("<Paste the XPath here>")
-
-    # textboxes[0].send_keys("Hello World")
-
-    # radiobuttons[2].click()
-
-    # checkboxes[1].click()
-    # checkboxes[3].click()
-
-    # submitbutton[0].click()
 
     browser.close()
 
