@@ -32,9 +32,29 @@ def main():
         field=get_proba_by_field(field=fields.trabajaste_profesion),
     )
 
+    # Siguiente
+    driver.click_field(
+        field='//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div',
+    )
+
     # Opciones Estudiante
     if tipo == '//*[@id="i37"]':
         logger.info("Estudiante")
+        driver.click_field(
+            field=get_proba_by_field(
+                field=fields.estudiante_abandonar_carrera
+            ),
+        )
+        driver.click_field(
+            field=get_proba_by_field(field=fields.estudiante_futuro_laboral),
+        )
+        driver.click_field(
+            field=get_proba_by_field(field=fields.estudiante_satisfecho),
+        )
+        # Siguiente
+        driver.click_field(
+            field='//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div[2]',
+        )
     elif tipo == '//*[@id="i40"]':
         logger.info("Estudiante-Abandono")
     elif tipo == '//*[@id="i43"]':

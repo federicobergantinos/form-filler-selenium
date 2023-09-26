@@ -80,7 +80,7 @@ trabajaste_profesion = {
 # TODO proba
 # ¿Que grado de satisfacción sentís con el nivel de apoyo que recibís de tus profesores y la facultad en tu carrera de IT?
 estudiante_satisfecho = {
-    "Muy satisfecho": {"id": '//*[@id="i5"]', "probability": 0.0},
+    "Muy satisfecho": {"id": '//*[@id="i5"]', "probability": 1},
     "Satisfecho": {"id": '//*[@id="i8"]', "probability": 0.0},
     "Neutral": {"id": '//*[@id="i11"]', "probability": 0.0},
     "Poco": {"id": '//*[@id="i14"]', "probability": 0.0},
@@ -89,15 +89,29 @@ estudiante_satisfecho = {
 
 #  ¿Considerás que las oportunidades laborales futuras en el campo de IT son un factor motivador para continuar con tus estudios actuales?
 estudiante_futuro_laboral = {
-    "si": {"id": '//*[@id="i24"]', "probability": 0.0},
+    "si": {"id": '//*[@id="i24"]', "probability": 1},
     "no": {"id": '//*[@id="i27"]', "probability": 0.0},
     "no sabe": {"id": '//*[@id="i30"]', "probability": 0.0},
 }
 
 #   ¿Alguna vez pensaste en abandonar la carrera?
 estudiante_abandonar_carrera = {
-    "si": {"id": '//*[@id="i37"]', "probability": 0.0},
+    "si": {"id": '//*[@id="i37"]', "probability": 1},
     "no": {"id": '//*[@id="i40"]', "probability": 0.0},
+}
+
+
+#   ¿Qué factores influyen principalmente en tu pensamiento de abandonar la carrera?
+penso_factores = {
+    "Falta de apoyo de profesores": {"id": '//*[@id="i6"]', "probability": 1},
+    "Dificultad de los cursos": {"id": '//*[@id="i9"]', "probability": 0.0},
+    "Condiciones laborales": {"id": '//*[@id="i12"]', "probability": 0.0},
+    "Duración de la carrera": {"id": '//*[@id="i15"]', "probability": 0.0},
+    "Falta de interés en el tema": {
+        "id": '//*[@id="i18"]',
+        "probability": 0.0,
+    },
+    "Otro": {"id": '//*[@id="i21"]', "probability": 0.0},
 }
 
 #  pregunta

@@ -26,3 +26,8 @@ class WebDriver:
     def click_field(self, field):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located((By.XPATH, field))).click()
+
+    def change_page(self, field):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located((By.XPATH, field))).click()
+        wait = WebDriverWait(self.browser, 10)
