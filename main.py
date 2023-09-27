@@ -18,7 +18,7 @@ def main():
         service = Service(executable_path="./msedgedriver")
         browser = webdriver.Edge(service=service, options=option)
 
-        browser.get("https://forms.gle/nZsA5uDfLJntpsE2A")
+        browser.get("https://bit.ly/3PvG6gs")
 
         driver = WebDriver(browser)
 
@@ -162,9 +162,9 @@ def run_multiple_times():
         main()  # Llama a tu función principal aquí
 
         if i % 2 == 0:  # Ejemplo de casos aislados
-            sleep_time = random.randint(30, 120)  # Tiempo de espera aleatorio entre 30 seg y 2 min
+            sleep_time = random.randint(30, 1200)  # Tiempo de espera aleatorio entre 30 seg y 2 min
         else:
-            sleep_time = random.randint(60, 300)  # Tiempo de espera aleatorio entre 1 y 5 minutos
+            sleep_time = random.randint(60, 3000)  # Tiempo de espera aleatorio entre 1 y 5 minutos
 
         logger.info(f"Durmiendo durante {sleep_time} segundos.")
         time.sleep(sleep_time)  # Espera el tiempo aleatorio

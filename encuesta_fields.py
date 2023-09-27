@@ -170,8 +170,8 @@ abandono_expectativas = {
 
 # ¿Recibiste orientación vocacional para explorar diferentes especialidades dentro de IT antes de tomar la decisión de abandonar?
 abandono_recibiste_orien = {
-    "si": {"id": '//*[@id="i94"]', "probability": 0.89},
-    "no": {"id": '//*[@id="i97"]', "probability": 0.11},
+    "si": {"id": '//*[@id="i94"]', "probability": 0.11},
+    "no": {"id": '//*[@id="i97"]', "probability": 0.89},
 }
 
 #  ¿Pensás retomar tus estudios de IT en algún momento futuro?
