@@ -158,8 +158,8 @@ abandono_recursos = {
 
 #   ¿Sentiste que tenías una conexión clara entre los conocimientos adquiridos en la carrera de IT y su aplicabilidad en el mundo real?
 abandono_conexion = {
-    "Mayoritariamente sí": {"id": '//*[@id="i74"]', "probability": 0.41},
-    "Mayoritariamente no": {"id": '//*[@id="i77"]', "probability": 0.59},
+    "Mayoritariamente sí": {"id": '//*[@id="i74"]', "probability": 0.37},
+    "Mayoritariamente no": {"id": '//*[@id="i77"]', "probability": 0.63},
 }
 
 #  ¿Experimentaste algún tipo de conflicto entre tus expectativas sobre la carrera de IT y la realidad de los estudios?
